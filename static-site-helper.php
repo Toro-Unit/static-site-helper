@@ -55,6 +55,26 @@ class Static_Site_Helper extends Load_Templates {
 		};
 	}
 
+	public function a( $content, $attr = array() ) {
+		$output = "";
+		$href = $attr["href"];
+		$class = $attr["class"];
+
+		foreach ($attr as $key => $value) {
+			if($key == "class" or $key == "href") {
+				continue;
+			}
+			$output .= " ".$key.'= "'.$value.'"';
+		}
+
+		if($this->is_current($href)) {
+			$class .=" current";
+		}
+
+		echo '<a '.$href.' '.$output.' '.$class.' >'.$content.'</a>';
+	}
+
+
 }
 
 $h = new Static_Site_Helper();
