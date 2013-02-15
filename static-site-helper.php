@@ -5,8 +5,8 @@
  *
  *
  */
-require dirname(__FILE__)."./config.php";
-require dirname(__FILE__)."./define.php";
+require dirname(__FILE__)."/config.php";
+require dirname(__FILE__)."/define.php";
 
 
 Class Load_Templates {
@@ -71,7 +71,18 @@ class Static_Site_Helper extends Load_Templates {
 			$class .=" current";
 		}
 
-		echo '<a '.$href.' '.$output.' '.$class.' >'.$content.'</a>';
+		echo '<a href="/'.SITE_DIR.$href.'" '.$output.' class="'.$class.'" >'.$content.'</a>';
+		return false;
+	}
+
+	public function body_class() {
+		$request_uri = str_replace(array("/index.php", "/"), array("", " "), $_SERVER['REQUEST_URI']);
+
+		if($request_uri = "" or $request_uri =" ") {
+			$request_uri ="home";
+		}
+
+		echo "class ='".$request_uri."'";
 	}
 
 
