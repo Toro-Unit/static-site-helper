@@ -76,9 +76,11 @@ class Static_Site_Helper extends Load_Templates {
 	}
 
 	public function body_class() {
-		$request_uri = str_replace(array("/index.php", "/"), array("", " "), $_SERVER['REQUEST_URI']);
+		$request_uri = trim(str_replace(array("index.php","/".SITE_DIR), "", $_SERVER['REQUEST_URI']), "/");
+		$request_uri = str_replace(array("/", '.php'), array(" " , ""), $request_uri);
 
-		if($request_uri = "" or $request_uri =" ") {
+
+		if($request_uri == "" or $request_uri == " ") {
 			$request_uri ="home";
 		}
 
