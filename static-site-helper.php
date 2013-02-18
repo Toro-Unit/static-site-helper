@@ -2,7 +2,13 @@
 /**
  *
  * Static Site Helper
+ * https://github.com/Toro-Unit/static-site-helper
+ *
+ * MIT Lisence
+ *
+ * @author Toro-Unit
  * @version 0.3
+ *
  *
  */
 require dirname(__FILE__)."/config.php";
