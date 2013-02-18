@@ -1,8 +1,8 @@
 <?php
 /**
  *
- * HELPER !!!
- *
+ * Static Site Helper
+ * @version 0.3
  *
  */
 require dirname(__FILE__)."/config.php";
@@ -37,7 +37,8 @@ class Static_Site_Helper extends Load_Templates {
 
 	public function is_current( $uri = "" ) {
 		$uri = SITE_DIR."/".trim( $uri, "/" );
-		$request_uri = $_SERVER['REQUEST_URI'];
+		$request_uri = explode( "?" ,$_SERVER['REQUEST_URI']);
+		$request_uri = $request_uri[0];
 
 		if( $uri && strpos($request_uri."/", "/".$uri."/", 0) !== FALSE ) {
 			return true;
@@ -76,7 +77,9 @@ class Static_Site_Helper extends Load_Templates {
 	}
 
 	public function body_class() {
-		$request_uri = trim(str_replace(array("index.php","/".SITE_DIR), "", $_SERVER['REQUEST_URI']), "/");
+		$request_uri = explode( "?" ,$_SERVER['REQUEST_URI']);
+		$request_uri = $request_uri[0];
+		$request_uri = trim(str_replace(array("index.php","/".SITE_DIR), "", $request_uri ), "/");
 		$request_uri = str_replace(array("/", '.php'), array(" " , ""), $request_uri);
 
 
